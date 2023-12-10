@@ -1,6 +1,6 @@
-# Prettier plugin sort react imports
+# Prettier plugin adjust imports
 
-A prettier plugins that change imports through the alias to relative if necessary.
+A prettier plugin that change imports through the alias to relative if necessary.
 
 ### The Problem
 
