@@ -1,6 +1,6 @@
 {
   "name": "prettier-plugin-adjust-imports",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A prettier plugins change imports through the alias to relative if necessary",
   "main": "dist/index.js",
   "scripts": {

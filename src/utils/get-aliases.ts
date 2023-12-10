@@ -17,7 +17,7 @@ export const getAliases = (): Alias[] => {
   const aliases: Alias[] = []
 
   const userTsConfig = getUserTsConfig()
-  const paths = userTsConfig.compilerOptions.paths
+  const paths = userTsConfig.compilerOptions?.paths
 
   if (paths) {
     for (const aliasData of Object.entries(paths)) {
