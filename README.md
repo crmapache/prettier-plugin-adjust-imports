@@ -1,6 +1,6 @@
 # Prettier plugin adjust imports
 
-A prettier plugin to sort import declarations through the alias to relative if necessary.
+A prettier plugin to sort import declarations through the alias to relatives if necessary.
 
 ### The Problem
 
@@ -68,5 +68,5 @@ It is not required. You can do it only if you need.
 | Name            | Required | Initial value | Description                                                                                  |
 |-----------------|----------|---------------|----------------------------------------------------------------------------------------------|
 | aliases         | false    | {}            | Your project aliases. You only need it if you don't have tsconfig.json in your project root. |
-| ascendingDepth  | false    | 0             | The maximum degree of nesting above the source file. 0 means no limits.                      |
-| descendingDepth | false    | 0             | The maximum degree of nesting below the source file. 0 means no limits.                      |
+| ascendingDepth  | false    | 0             | The maximum nesting level above the source file. 0 means no limits.                          |
+| descendingDepth | false    | 0             | The maximum nesting level below the source file. 0 means no limits.                          |
