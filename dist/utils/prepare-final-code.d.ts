@@ -1,2 +1,2 @@
-import { DetalizedImport } from "../types";
+import { DetalizedImport } from '../types';
 export declare const prepareFinalCode: (importsToReplace: DetalizedImport[], code: string) => string;

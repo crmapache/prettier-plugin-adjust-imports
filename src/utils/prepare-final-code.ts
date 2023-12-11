@@ -1,9 +1,6 @@
-import {DetalizedImport} from "../types";
+import { DetalizedImport } from '../types'
 
-export const prepareFinalCode = (
-  importsToReplace: DetalizedImport[],
-  code: string,
-) => {
+export const prepareFinalCode = (importsToReplace: DetalizedImport[], code: string) => {
   let result = code
 
   for (const importToReplace of importsToReplace) {

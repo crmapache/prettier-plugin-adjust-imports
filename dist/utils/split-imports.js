@@ -26,7 +26,7 @@ const detalizeImport = (rawImport, aliases) => {
 };
 const splitImports = (rawImports, aliases) => {
     let rawImportsData = rawImports;
-    const singleLineRegExp = /^import.+['"`]$/gm;
+    const singleLineRegExp = /^import.+['"`];?$/gm;
     const singleLineImports = rawImports.match(singleLineRegExp);
     rawImportsData = rawImportsData.replace(singleLineRegExp, '');
     const multiLineRegExp = /^import\s*{(\s*[\w\s,/\n]*\s*)}\s*from\s*['"].+['"].*$/gm;
@@ -42,6 +42,6 @@ const splitImports = (rawImports, aliases) => {
             imports.push(clearImportFromComments(multiLineImport));
         }
     }
-    return imports.map(rawImport => detalizeImport(rawImport, aliases));
+    return imports.map((rawImport) => detalizeImport(rawImport, aliases));
 };
 exports.splitImports = splitImports;

@@ -3,3 +3,7 @@ export * from './prepare-final-code';
 export * from './simplify-imports';
 export * from './get-aliases';
 export * from './extract-import-path';
+export * from './get-complete-file-path';
+export * from './get-project-root-folder-complete-path';
+export * from './get-user-config';
+export * from './get-user-ts-config';

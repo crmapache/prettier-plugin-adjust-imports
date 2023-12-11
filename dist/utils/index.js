@@ -19,3 +19,7 @@ __exportStar(require("./prepare-final-code"), exports);
 __exportStar(require("./simplify-imports"), exports);
 __exportStar(require("./get-aliases"), exports);
 __exportStar(require("./extract-import-path"), exports);
+__exportStar(require("./get-complete-file-path"), exports);
+__exportStar(require("./get-project-root-folder-complete-path"), exports);
+__exportStar(require("./get-user-config"), exports);
+__exportStar(require("./get-user-ts-config"), exports);

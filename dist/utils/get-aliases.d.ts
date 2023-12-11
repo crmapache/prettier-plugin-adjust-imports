@@ -1,2 +1,2 @@
 import { Alias } from '../types';
-export declare const getAliases: () => Alias[];
+export declare const getAliases: (rootFolder: string) => Alias[];

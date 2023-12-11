@@ -1,33 +1,26 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAliases = void 0;
-const fs_1 = __importDefault(require("fs"));
-const getUserTsConfig = () => {
-    try {
-        const tsConfigBuffer = fs_1.default.readFileSync(`${process.cwd()}/tsconfig.json`);
-        const tsConfigString = tsConfigBuffer.toString('utf8');
-        const safeTsConfigString = tsConfigString.replace(/[\s\n]/gm, '').replace(',}', '}');
-        return JSON.parse(safeTsConfigString);
-    }
-    catch (e) { }
-    return {};
-};
-const getAliases = () => {
+const get_user_ts_config_1 = require("./get-user-ts-config");
+const get_user_config_1 = require("./get-user-config");
+const getAliases = (rootFolder) => {
+    var _a, _b;
     const aliases = [];
-    const userTsConfig = getUserTsConfig();
-    const paths = userTsConfig.compilerOptions.paths;
+    const userTsConfig = (0, get_user_ts_config_1.getUserTsConfig)(rootFolder);
+    const userConfig = (0, get_user_config_1.getUserConfig)(rootFolder);
+    const paths = (_b = (_a = userTsConfig.compilerOptions) === null || _a === void 0 ? void 0 : _a.paths) !== null && _b !== void 0 ? _b : userConfig.aliases;
     if (paths) {
-        for (const aliasData of Object.entries(paths)) {
-            const alias = aliasData[0].replace(/\/\*$/, '');
-            const path = aliasData[1][0];
-            if (!aliases.find((el) => el.alias === alias)) {
-                aliases.push({ alias, path });
+        try {
+            for (const aliasData of Object.entries(paths)) {
+                const alias = aliasData[0].replace(/\/\*$/, '');
+                const path = aliasData[1][0];
+                if (!aliases.find((el) => el.alias === alias)) {
+                    aliases.push({ alias, path });
+                }
             }
         }
+        catch (e) { }
     }
-    return aliases;
+    return aliases.map((alias) => (Object.assign(Object.assign({}, alias), { path: alias.path.replace(/^\.?\/?(src)?\/?/g, '') })));
 };
 exports.getAliases = getAliases;

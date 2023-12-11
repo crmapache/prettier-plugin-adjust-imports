@@ -1,4 +1,4 @@
-import {Alias, DetalizedImport} from "../types";
+import { Alias, DetalizedImport } from '../types'
 import { extractImportPath } from './extract-import-path'
 
 const clearImportFromComments = (row: string) =>
@@ -11,7 +11,7 @@ const findAliasMathImport = (path: string, aliases: Alias[]): Alias | null => {
   let largestAlias: Alias | null = null
 
   for (const alias of aliases) {
-    if(path.startsWith(alias.alias)) {
+    if (path.startsWith(alias.alias)) {
       if (!largestAlias || largestAlias.alias < alias.alias) {
         largestAlias = alias
       }
@@ -33,7 +33,7 @@ const detalizeImport = (rawImport: string, aliases: Alias[]): DetalizedImport =>
 export const splitImports = (rawImports: string, aliases: Alias[]) => {
   let rawImportsData = rawImports
 
-  const singleLineRegExp = /^import.+['"`]$/gm
+  const singleLineRegExp = /^import.+['"`];?$/gm
   const singleLineImports = rawImports.match(singleLineRegExp)
   rawImportsData = rawImportsData.replace(singleLineRegExp, '')
 
@@ -54,5 +54,5 @@ export const splitImports = (rawImports: string, aliases: Alias[]) => {
     }
   }
 
-  return imports.map(rawImport => detalizeImport(rawImport, aliases))
+  return imports.map((rawImport) => detalizeImport(rawImport, aliases))
 }

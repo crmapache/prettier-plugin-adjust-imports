@@ -1,34 +1,26 @@
-import fs from 'fs'
-
 import { Alias } from '../types'
+import { getUserTsConfig } from './get-user-ts-config'
+import { getUserConfig } from './get-user-config'
 
-const getUserTsConfig = ()=> {
-  try {
-    const tsConfigBuffer = fs.readFileSync(`${process.cwd()}/tsconfig.json`)
-    const tsConfigString = tsConfigBuffer.toString('utf8')
-    const safeTsConfigString = tsConfigString.replace(/[\s\n]/gm, '').replace(',}', '}')
-    return JSON.parse(safeTsConfigString)
-  } catch (e) {}
-
-  return {}
-}
-
-export const getAliases = (): Alias[] => {
+export const getAliases = (rootFolder: string): Alias[] => {
   const aliases: Alias[] = []
 
-  const userTsConfig = getUserTsConfig()
-  const paths = userTsConfig.compilerOptions?.paths
+  const userTsConfig = getUserTsConfig(rootFolder)
+  const userConfig = getUserConfig(rootFolder)
+  const paths = userTsConfig.compilerOptions?.paths ?? userConfig.aliases
 
   if (paths) {
-    for (const aliasData of Object.entries(paths)) {
-      const alias = aliasData[0].replace(/\/\*$/, '')
-      const path = aliasData[1][0]
+    try {
+      for (const aliasData of Object.entries(paths)) {
+        const alias = aliasData[0].replace(/\/\*$/, '')
+        const path = aliasData[1][0]
 
-      if (!aliases.find((el) => el.alias === alias)) {
-        aliases.push({ alias, path })
+        if (!aliases.find((el) => el.alias === alias)) {
+          aliases.push({ alias, path })
+        }
       }
-    }
+    } catch (e) {}
   }
 
-  return aliases
+  return aliases.map((alias) => ({ ...alias, path: alias.path.replace(/^\.?\/?(src)?\/?/g, '') }))
 }
