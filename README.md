@@ -56,9 +56,7 @@ It is not required. You can do it only if you need.
 {
   "aliases": {
     "@shared": ["components/shared"],
-    "@shared/*": ["components/shared/*"],
-    "@features": ["components/features"],
-    "@features/*": ["components/features/*"]
+    "@features": ["components/features"]
   },
   "ascendingDepth": 0,
   "descendingDepth": 0
