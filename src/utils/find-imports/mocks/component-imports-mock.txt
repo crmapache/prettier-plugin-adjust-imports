@@ -1,0 +1,26 @@
+import Fuse from 'fuse.js'
+import './styles.scss'
+import { BlackTransparentMask } from '../../SharedPageMask'
+import { ACCORDEON_DATA, TAB_OPTIONS, TABS_TO_SHOW } from './Faq.constants'
+import emptySearchResultSadFace from '@assets/svg/empty-search-result-sad-face.svg'
+import {
+  FaqWrap,
+  ShowAllButtonWrap,
+  ShowAllButton,
+  EmptySearchResultWrap,
+  TabsWrap,
+} from './Faq.elements'
+import Image from 'next/image'
+import { ShowAllButtonBackground } from './ShowAllButtonBackground'
+import { BackdropWrap, Backdrop } from '../FrontBackdrop'
+import {
+  SearchInput,
+  Tabs,
+  Accordeon,
+  Typography,
+  Box,
+  SecondaryButton,
+  AccordeonElement,
+} from '@core'
+import debounce from "lodash/debounce"
+import { useMemo, useState } from 'react'

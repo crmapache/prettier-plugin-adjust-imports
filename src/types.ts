@@ -1,18 +1,24 @@
-export type DetalizedImport = {
+import { CompilerOptions } from 'typescript'
+
+export type Import = {
   raw: string
-  updatedRaw?: string
   path: string
   aliasPath: string | null
   realPath: string
-}
-
-export type Alias = {
-  alias: string
-  path: string
+  updatedRaw?: string
 }
 
 export type UserConfig = {
   aliases?: Record<string, string[]>
   ascendingDepth?: number
   descendingDepth?: number
+}
+
+export type TsConfig = {
+  compilerOptions?: CompilerOptions
+  include?: string[]
+  exclude?: string[]
+  extends?: string
+  files?: string[]
+  references?: Array<{ path: string }>
 }
