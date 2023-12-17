@@ -1,5 +1,5 @@
-import { Alias, DetalizedImport } from '../types'
-import { extractImportPath } from './extract-import-path'
+import { Import } from '../../types'
+import { extractImportPath } from './helpers'
 
 const clearImportFromComments = (row: string) =>
   row

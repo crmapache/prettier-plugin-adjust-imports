@@ -1,16 +1,21 @@
-export const extractor = (code: string) => {
+/**
+ * Find all imports statement in the code.
+ */
+export const findImports = (code: string): string | null => {
   const rows = code.split('\n')
 
   let lastImportIndex = -1
   let waitCloseBrace = false
 
   for (let i = 0; i < rows.length; i++) {
-    if (/^import\s\{$/.test(rows[i])) {
+    const row = rows[i].trim()
+
+    if (/^import\s\{$/.test(row)) {
       waitCloseBrace = true
-    } else if (waitCloseBrace && /}.+/.test(rows[i])) {
+    } else if (waitCloseBrace && /}.+/.test(row)) {
       lastImportIndex = i
       waitCloseBrace = false
-    } else if (/^import\s.+/.test(rows[i])) {
+    } else if (/^import\s.+/.test(row)) {
       lastImportIndex = i
     }
   }
